@@ -17,6 +17,6 @@ monolith-app/
 |       |-- postgres/   # PostgreSQL repository
 |       |-- mongo/      # MongoDB repository
 |       |-- redis/      # Redis repository
-|       |-- repo.go
+|       └── repo.go
 ├── pkg/                # Shared utilities and helpers
 └── go.mod              # Module dependencies

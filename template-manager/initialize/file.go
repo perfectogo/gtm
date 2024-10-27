@@ -9,7 +9,7 @@ import (
 func CreateFile(projectName string, files map[string]string) error {
 	for path, code := range files {
 
-		file, err := os.OpenFile(path, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+		file, err := os.Create(path)
 		if err != nil {
 			return errors.New("Error creating file. Error " + err.Error())
 		}

@@ -27,11 +27,12 @@ func WithSpace(s string) string {
 }
 
 func Tmp(data string) *template.Template {
-	return template.Must(template.New("").Funcs(template.FuncMap{
-		"toCamel":      ToCamel,
-		"toLowerCamel": ToLowerCamel,
-		"toSnake":      ToSnake,
-		"toKebab":      ToKebab,
-		"withSpace":    WithSpace,
-	}).Parse(data))
+	return template.Must(template.New("").Funcs(
+		template.FuncMap{
+			"toCamel":      ToCamel,
+			"toLowerCamel": ToLowerCamel,
+			"toSnake":      ToSnake,
+			"toKebab":      ToKebab,
+			"withSpace":    WithSpace,
+		}).Parse(data))
 }

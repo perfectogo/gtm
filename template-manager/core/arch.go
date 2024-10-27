@@ -10,6 +10,7 @@ import (
 
 func CreateApp(ProjectName, modPath string, crudName *string) {
 
+	// create folders
 	var folders []string = []string{
 		ProjectName,
 		fmt.Sprintf("%s/cmd", ProjectName),
@@ -31,24 +32,35 @@ func CreateApp(ProjectName, modPath string, crudName *string) {
 		fmt.Sprintf("%s/pkg", ProjectName),
 	}
 
+	if err := initialize.CreateFolder(folders); err != nil {
+		log.Fatalln(err)
+	}
+
+	// create files
 	var files map[string]string = map[string]string{
 
 		// cmd
 		fmt.Sprintf("%s/cmd/main.go", ProjectName): templates.GetCmdTemplate(),
 
 		// api
-		fmt.Sprintf("%s/api/api.go", ProjectName): templates.GetApiTemplate(),
+		fmt.Sprintf("%s/api/api.go", ProjectName):                   templates.GetApiTemplate(),
+		fmt.Sprintf("%s/api/handlers/handlers.go", ProjectName):     templates.GetHandlerTemplate(),
 		fmt.Sprintf("%s/api/middleware/middleware.go", ProjectName): templates.GetMiddlewareTemplate(),
 
 		// internal
-	}
 
-	if err := initialize.CreateFolder(folders); err != nil {
-		log.Fatalln(err)
+		// other files
+		fmt.Sprintf("%s/.gitignore", ProjectName): templates.GetGitignoreTemplate(),
+		fmt.Sprintf("%s/.env", ProjectName):       templates.GetEnvTemplate(),
+		fmt.Sprintf("%s/README.md", ProjectName):  templates.GetReadmeTemplate(),
 	}
 
 	if err := initialize.CreateFile(ProjectName, files); err != nil {
 		log.Fatalln(err)
 	}
 
+	// init project
+	if err := initialize.InitProject(modPath, ProjectName); err != nil {
+		log.Fatalln(err)
+	}
 }
