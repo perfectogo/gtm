@@ -1,0 +1,22 @@
+monolith-app/
+│
+├── api/
+│   ├── handlers/       # Contains all the HTTP handlers
+│   │   └── user.go     # Example handler for user-related routes
+│   ├── middleware/     # Custom middleware for authentication, logging, etc.
+│   │   └── auth.go
+│   └── api.go          # Entry point for registering routes and middlewares
+├── cmd/
+│   └── main.go         # Entry point of the application
+├── internal/
+│   ├── config/         # Application configuration
+│   ├── database/       # Database connection and migrations
+│   ├── services/       # Business logic
+│   ├── models/         # Database models
+│   └── repository/     # Data access layer
+|       |-- postgres/   # PostgreSQL repository
+|       |-- mongo/      # MongoDB repository
+|       |-- redis/      # Redis repository
+|       |-- repo.go
+├── pkg/                # Shared utilities and helpers
+└── go.mod              # Module dependencies
